@@ -1,25 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { customTheme } from './theme/customTheme';
+import Button from '@mui/material/Button';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={customTheme}>
+      <CssBaseline />
+      <h1>Library</h1>
+      <Button color="primary">Primary</Button>
+    </ThemeProvider>
   );
 }
 
