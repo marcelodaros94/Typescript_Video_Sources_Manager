@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC, ReactElement} from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { customTheme } from './theme/customTheme';
 import Button from '@mui/material/Button';
 
-function App() {
+const App:FC = (): ReactElement => {
   return (
     <ThemeProvider theme={customTheme}>
       <CssBaseline />
