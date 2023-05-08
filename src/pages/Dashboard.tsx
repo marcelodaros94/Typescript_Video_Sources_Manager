@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Grid }  from '@mui/material';
-import { Match } from '../components/Match'
+import { Video } from '../components/Video'
 
 export const Dashboard: FC = (props): ReactElement => {
 
@@ -14,7 +14,7 @@ export const Dashboard: FC = (props): ReactElement => {
     return (        
         <Grid container spacing={2}>
             <Grid item xs={12} sm={6} md={4}>   
-                <Match title={data.title} image={data.image} desc={data.desc} />    
+                <Video title={data.title} image={data.image} desc={data.desc} />    
             </Grid>
         </Grid>
     )

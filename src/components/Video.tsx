@@ -1,13 +1,17 @@
 import React, { FC, ReactElement } from 'react';
 import { Card, CardMedia, CardActions, Button, CardContent, Typography }  from '@mui/material';
 
-interface IMatch {
-    title?: string;
-    image?: string;
-    desc?: string;
-} 
+interface IVideo {
+    title: string;
+    desc: string;
+    image: string;
+}
+  
+interface IMatch extends IVideo {
+    rating?: number;
+}
 
-export const Match: FC<IMatch> = (props): ReactElement => {
+export const Video: FC<IVideo | IMatch> = (props): ReactElement => {
 
     return (         
         <Card sx={{ maxWidth: 345 }}>
