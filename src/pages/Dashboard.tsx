@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Grid }  from '@mui/material';
-import { Video } from '../components/Video'
+import { Video } from '../components/Video/Video'
 
 export const Dashboard: FC = (props): ReactElement => {
 
