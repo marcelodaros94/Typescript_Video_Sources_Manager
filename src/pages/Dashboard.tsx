@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Grid }  from '@mui/material';
 import { Video } from '../components/Video/Video'
+import Layout from '../components/Layout/Layout';
 
 export const Dashboard: FC = (props): ReactElement => {
 
@@ -11,11 +12,13 @@ export const Dashboard: FC = (props): ReactElement => {
         desc: 'AEW Revolution 2020'
     };
 
-    return (        
-        <Grid container spacing={2}>
-            <Grid item xs={12} sm={6} md={4}>   
-                <Video title={data.title} image={data.image} desc={data.desc} />    
+    return (    
+        <Layout>            
+            <Grid container spacing={2}>
+                <Grid item xs={12} sm={6} md={4}>   
+                    <Video title={data.title} image={data.image} desc={data.desc} />    
+                </Grid>
             </Grid>
-        </Grid>
+        </Layout>
     )
 }
