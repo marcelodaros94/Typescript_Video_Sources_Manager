@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { customTheme } from './theme/customTheme';
 import { Dashboard } from './pages/Dashboard';
-import { NewVideo } from './components/Video/NewVideo';
+import { NewVideo } from './components/Video/New/NewVideo';
 
 const App:FC = (): ReactElement => {
   return (

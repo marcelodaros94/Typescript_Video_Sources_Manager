@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
-import { Box, Typography } from '@mui/material';
-import Layout from '../Layout/Layout';
+import { Box, Typography, Stack } from '@mui/material';
+import Layout from '../../Layout/Layout';
+import { VideoTitleField } from './_VideoTitleField';
 
 export const NewVideo: FC = (): ReactElement => {
     return (
@@ -12,7 +13,10 @@ export const NewVideo: FC = (): ReactElement => {
             width="100%" 
             px={4} my={6}
             >
-                <Typography >New Video</Typography>
+                <Typography mb={2}>New Video</Typography>
+                <Stack spacing={2}>
+                    <VideoTitleField />
+                </Stack>
             </Box>
         </Layout>
     )
