@@ -3,12 +3,12 @@ import { Video } from './types';
 
 interface VideosState {
   list: Video[];
-  currentVideo: Video | null;
+  currentVideoIndex: number;
 }
 
 const initialState: VideosState = {
   list: [],
-  currentVideo: null,
+  currentVideoIndex: 0,
 };
 
 const videosSlice = createSlice({
@@ -18,12 +18,16 @@ const videosSlice = createSlice({
     setVideoList: (state, action: PayloadAction<Video[]>) => {
       state.list = action.payload;
     },
-    setCurrentVideo: (state, action: PayloadAction<Video>) => {
-      state.currentVideo = action.payload;
+    setCurrentVideoIndex: (state, action: PayloadAction<number>) => {
+      state.currentVideoIndex = action.payload;
     },
+    goToNextVideo: (state) => {
+      state.currentVideoIndex =
+        (state.currentVideoIndex + 1) % state.list.length;
+    }
   },
 });
 
-export const { setVideoList, setCurrentVideo } = videosSlice.actions;
+export const { setVideoList, setCurrentVideoIndex, goToNextVideo } = videosSlice.actions;
 
 export const rootReducer = videosSlice.reducer;
