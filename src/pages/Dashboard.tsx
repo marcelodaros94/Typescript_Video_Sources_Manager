@@ -13,13 +13,17 @@ export const Dashboard: FC = (props): ReactElement => {
     const videoList = useSelector((state: RootState) => state.list);
 
     useEffect(() => {
-      axios.get('http://127.0.0.1:8000/api/videos')
-        .then((response) => {
-          dispatch(setVideoList(response.data));
-        })
-        .catch((error) => {
-          console.error('Error fetching video list:', error);
-        });
+        
+        const fetchVideoList = async () => {
+          try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos`);
+            dispatch(setVideoList(response.data));
+          } catch (error) {
+            console.error('Error fetching video list:', error);
+          }
+        };    
+        fetchVideoList();
+
     }, [dispatch]);
   
 

@@ -17,7 +17,7 @@ export const Video: FC<IVideo | IMatch> = (props): ReactElement => {
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 sx={{ height: 140 }}
-                image={props.image}
+                image={process.env.REACT_APP_IMAGES_URL+props.image}
                 title={props.title}
             />
             <CardContent>
