@@ -1,17 +1,8 @@
 import React, { FC, ReactElement } from 'react';
 import { Card, CardMedia, CardActions, Button, CardContent, Typography }  from '@mui/material';
+import { Video as IVideo } from '../../redux/types';
 
-interface IVideo {
-    title: string;
-    desc: string;
-    image: string;
-}
-  
-interface IMatch extends IVideo {
-    rating?: number;
-}
-
-export const Video: FC<IVideo | IMatch> = (props): ReactElement => {
+export const Video: FC<IVideo> = (props): ReactElement => {
 
     return (         
         <Card sx={{ maxWidth: 345 }}>
@@ -25,7 +16,7 @@ export const Video: FC<IVideo | IMatch> = (props): ReactElement => {
                 {props.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                {props.desc}
+                {props.description}
                 </Typography>
             </CardContent>
             <CardActions>

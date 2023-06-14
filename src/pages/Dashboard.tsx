@@ -5,13 +5,13 @@ import { Sidebar } from '../components/Sidebar/Sidebar'
 import Layout from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentVideoIndex, setVideoList } from '../redux/reducers';
-import { RootState, Video } from '../redux/types';
+import { VideosState, Video } from '../redux/types';
 import axios from 'axios';
 
 export const Dashboard: FC = (props): ReactElement => {
 
     const dispatch = useDispatch();
-    const videoList = useSelector((state: RootState) => state.list);
+    const videoList = useSelector((state: VideosState) => state.list);
 
     useEffect(() => {
         

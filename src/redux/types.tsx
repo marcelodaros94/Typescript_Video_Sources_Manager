@@ -1,16 +1,25 @@
 export interface Video {
-    id: number;
+    id?: number;
     title: string;
     description: string;
+    rating?: number;
     image: string;
-    links: Link[];
+    links?: Link[];
 }
 export interface Link {
     id: number;
     url: string;
     video_id: number;
 }
-export interface RootState {
-    list: Video[];
-    currentVideo: Video | null;
+export interface VideosState {
+  list: Video[];
+  currentVideoIndex: number;
+  uploadNewVideo: NewVideoState;
+}
+export interface NewVideoState{  
+  videoTitle: string;
+  videoDescription: string;
+  videoRating: number;
+  videoUrls: string[];
+  uploadedImage: File | null;
 }

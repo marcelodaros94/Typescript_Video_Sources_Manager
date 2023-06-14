@@ -3,7 +3,7 @@ import { Grid }  from '@mui/material';
 import { Video as VideoComponent } from '../Video/Video'
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentVideoIndex, setVideoList } from '../../redux/reducers';
-import { RootState, Video } from '../../redux/types';
+import { VideosState, Video } from '../../redux/types';
 import axios from 'axios';
 
 interface SidebarProps {
@@ -13,7 +13,7 @@ interface SidebarProps {
 export const Sidebar: FC<SidebarProps> = ({ videos }): ReactElement => {
 
     const dispatch = useDispatch();
-    const videoList = useSelector((state: RootState) => state.list);
+    const videoList = useSelector((state: VideosState) => state.list);
 
     useEffect(() => {
         
@@ -33,7 +33,7 @@ export const Sidebar: FC<SidebarProps> = ({ videos }): ReactElement => {
     return (         
         <Grid item xs={12} sm={12} md={4}> 
             {videoList.map((video, index) => (  
-                <VideoComponent key={index} title={video.title} image={video.image} desc={video.description} />    
+                <VideoComponent key={index} title={video.title} image={video.image} description={video.description} />    
             ))}
         </Grid>
     )
