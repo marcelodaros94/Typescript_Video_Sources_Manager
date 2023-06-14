@@ -33,6 +33,11 @@ export const VideoPlayer: FC = (props): ReactElement => {
                 controls
                 onEnded={handleVideoEnded}
                 playing={true}
+                config={{
+                  youtube: {
+                    playerVars: { origin: 'http://localhost:3000' },
+                  },
+                }}
             />
             )}
         </Grid>
