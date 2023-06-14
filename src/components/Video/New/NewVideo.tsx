@@ -2,7 +2,6 @@ import React, { FC, ReactElement, useState } from 'react';
 import { Box, Typography, Stack, Button } from '@mui/material';
 import Layout from '../../Layout/Layout';
 import { VideoTitleField } from './_VideoTitleField';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { VideosState } from '../../../redux/types';
 import { resetForm } from '../../../redux/reducers';
@@ -10,6 +9,7 @@ import VideoUrlField from './_VideoUrlField';
 import ImageUploadField from './_ImageUploadField';
 import { VideoDescriptionField } from './_VideoDescriptionField';
 import { VideoRatingField } from './_VideoRatingField';
+import videoService from '../../../services/video';
 
 export const NewVideo: FC = (): ReactElement => {
     
@@ -52,8 +52,7 @@ export const NewVideo: FC = (): ReactElement => {
         formData.append('image', uploadedImage);
 
         // Enviar la solicitud al endpoint de la API utilizando Axios
-        axios
-        .post(`${process.env.REACT_APP_API_URL}/video`, formData)
+        videoService.uploadNewVideo(formData)
         .then((response) => {
             console.log('Solicitud enviada correctamente');
             console.log(response.data);

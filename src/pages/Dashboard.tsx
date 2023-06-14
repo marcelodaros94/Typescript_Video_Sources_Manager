@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentVideoIndex, setVideoList } from '../redux/reducers';
 import { VideosState, Video } from '../redux/types';
 import axios from 'axios';
+import videoService from '../services/video';
 
 export const Dashboard: FC = (props): ReactElement => {
 
@@ -17,7 +18,7 @@ export const Dashboard: FC = (props): ReactElement => {
         
         const fetchVideoList = async () => {
           try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/videos`);
+            const response = await videoService.getVideos();
             dispatch(setVideoList(response.data));
           } catch (error) {
             console.error('Error fetching video list:', error);
