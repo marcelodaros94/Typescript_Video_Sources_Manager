@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import Grid from '@mui/material/Grid';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -10,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 export default function MainNavigation() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -21,20 +23,23 @@ export default function MainNavigation() {
     setAnchorEl(null);
   };
   return (
-    <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Typography sx={{ minWidth: 100 }}><Link to='/'>Home</Link></Typography>
-        <Typography sx={{ minWidth: 100 }}><Link to='/videos/new'>Add</Link></Typography>
+    <Grid style={{ margin: '20px 0' }}>
+      <Box sx={{ display: 'inline-flex', alignItems: 'center', textAlign: 'left' }}>
+        <Typography sx={{ minWidth: 100 }}>
+          <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>Home</Link>
+        </Typography>
+        <Typography sx={{ minWidth: 100 }}>
+          <Link to='/videos/new' style={{ textDecoration: 'none', color: 'inherit' }}>Add</Link>
+        </Typography>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>Me</Avatar>
+            <VpnKeyIcon />
           </IconButton>
         </Tooltip>
       </Box>
@@ -84,6 +89,6 @@ export default function MainNavigation() {
           Logout
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </Grid>
   );
 }

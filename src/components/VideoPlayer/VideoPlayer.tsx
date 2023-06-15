@@ -24,7 +24,7 @@ export const VideoPlayer: FC = (props): ReactElement => {
     };
 
     return (
-        <Grid item xs={12} sm={12} md={8}> 
+        <Grid item xs={12} sm={12} md={8} direction={'column'} spacing={2}> 
             <h2>Video Player</h2>
             {videos.length > 0 && videos[currentVideoIndex]?.links && (
             <ReactPlayer

@@ -1,5 +1,5 @@
-import React, { FC, ReactElement, useEffect } from 'react';
-import { Grid, Pagination }  from '@mui/material';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
+import { Box, Grid, Input, Pagination }  from '@mui/material';
 import { VideoPlayer } from '../components/VideoPlayer/VideoPlayer'
 import { Sidebar } from '../components/Sidebar/Sidebar'
 import Layout from '../components/Layout/Layout';
@@ -13,10 +13,11 @@ export const Dashboard: FC = (props): ReactElement => {
     const dispatch = useDispatch();
     const videoList = useSelector((state: VideosState) => state.list);
     const pageInfo = useSelector(selectPageInfo);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    const fetchVideoList = async (page: number) => {
+    const fetchVideoList = async (page: number, term: string) => {
       try {
-        const response = await videoService.getVideos(page);
+        const response = await videoService.getVideos(page, term);
         dispatch(setVideoList(response.data.videos));
         dispatch(setTotalPages(response.data.totalPages));
       } catch (error) {
@@ -25,23 +26,28 @@ export const Dashboard: FC = (props): ReactElement => {
     };    
 
     useEffect(() => {        
-        fetchVideoList(pageInfo.currentPage);
-    }, [pageInfo.currentPage]);//se llama cada vez que cambie la variable de redux
+        fetchVideoList(pageInfo.currentPage, searchTerm);
+    }, [pageInfo.currentPage, searchTerm]);//se llama cada vez que cambie la variable de redux
   
     const handlePageChange = (event: any, page: number) => {
       dispatch(setPage(page));//cambia la variable de redux
     };
 
+    const handleSearch = (event: any) => {
+      setSearchTerm(event.target.value);
+    };
+
     return (    
-        <Layout>            
-            <Grid container spacing={2}>
-                    <VideoPlayer />
-                    <Sidebar videos={videoList} />
-                    <Pagination
-                      count={pageInfo.totalPages}
-                      page={pageInfo.currentPage}
-                      onChange={handlePageChange}
-                    />
+        <Layout>       
+            <Grid container>       
+              <Input value={searchTerm} onChange={handleSearch} placeholder="Buscar videos" sx={{ width: '100%' }} />              
+              <VideoPlayer />
+              <Sidebar videos={videoList} />
+              <Pagination
+                count={pageInfo.totalPages}
+                page={pageInfo.currentPage}
+                onChange={handlePageChange}
+              />
             </Grid>
         </Layout>
     )

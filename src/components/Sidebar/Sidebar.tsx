@@ -9,7 +9,7 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = ({ videos }): ReactElement => { 
     return (         
-        <Grid item xs={12} sm={12} md={4}> 
+        <Grid item xs={12} sm={12} md={4} direction={'column'} spacing={2} > 
             {videos.map((video, index) => (  
                 <VideoComponent key={index} title={video.title} image={video.image} description={video.description} />    
             ))}
