@@ -1,39 +1,47 @@
 import React, { FC, ReactElement, useEffect } from 'react';
-import { Grid }  from '@mui/material';
+import { Grid, Pagination }  from '@mui/material';
 import { VideoPlayer } from '../components/VideoPlayer/VideoPlayer'
 import { Sidebar } from '../components/Sidebar/Sidebar'
 import Layout from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentVideoIndex, setVideoList } from '../redux/reducers';
+import { setVideoList, selectPageInfo, setPage, setTotalPages } from '../redux/reducers';
 import { VideosState, Video } from '../redux/types';
-import axios from 'axios';
 import videoService from '../services/video';
 
 export const Dashboard: FC = (props): ReactElement => {
 
     const dispatch = useDispatch();
     const videoList = useSelector((state: VideosState) => state.list);
+    const pageInfo = useSelector(selectPageInfo);
 
-    useEffect(() => {
-        
-        const fetchVideoList = async () => {
-          try {
-            const response = await videoService.getVideos();
-            dispatch(setVideoList(response.data));
-          } catch (error) {
-            console.error('Error fetching video list:', error);
-          }
-        };    
-        fetchVideoList();
+    const fetchVideoList = async (page: number) => {
+      try {
+        const response = await videoService.getVideos(page);
+        dispatch(setVideoList(response.data.videos));
+        dispatch(setTotalPages(response.data.totalPages));
+      } catch (error) {
+        console.error('Error fetching video list:', error);
+      }
+    };    
 
-    }, [dispatch]);
+    useEffect(() => {        
+        fetchVideoList(pageInfo.currentPage);
+    }, [pageInfo.currentPage]);//se llama cada vez que cambie la variable de redux
   
+    const handlePageChange = (event: any, page: number) => {
+      dispatch(setPage(page));//cambia la variable de redux
+    };
 
     return (    
         <Layout>            
             <Grid container spacing={2}>
                     <VideoPlayer />
                     <Sidebar videos={videoList} />
+                    <Pagination
+                      count={pageInfo.totalPages}
+                      page={pageInfo.currentPage}
+                      onChange={handlePageChange}
+                    />
             </Grid>
         </Layout>
     )

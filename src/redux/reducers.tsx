@@ -10,7 +10,11 @@ const initialState: VideosState = {
     videoRating: 3.75,
     videoUrls: [''],
     uploadedImage: null
-  }
+  },
+  pageInfo: {
+    currentPage: 1,
+    totalPages: 1,
+  },
 };
 
 const videosSlice = createSlice({
@@ -59,7 +63,14 @@ const videosSlice = createSlice({
         videoUrls: [''],
         uploadedImage: null
       }
-    }
+    },
+    //pagination    
+    setPage: (state, action: PayloadAction<number>) => {
+      state.pageInfo.currentPage = action.payload;
+    },
+    setTotalPages: (state, action: PayloadAction<number>) => {
+      state.pageInfo.totalPages = action.payload;
+    },
   },
 });
 
@@ -74,6 +85,11 @@ export const {
   removeVideoUrl,
   setVideoUrl,
   setUploadedImage,
-  resetForm } = videosSlice.actions;
+  resetForm,
+  setPage,
+  setTotalPages
+} = videosSlice.actions;
+
+export const selectPageInfo = (state: VideosState) => state.pageInfo;
 
 export const rootReducer = videosSlice.reducer;

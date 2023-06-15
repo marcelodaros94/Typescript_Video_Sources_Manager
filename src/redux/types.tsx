@@ -14,7 +14,11 @@ export interface Link {
 export interface VideosState {
   list: Video[];
   currentVideoIndex: number;
-  uploadNewVideo: NewVideoState;
+  uploadNewVideo: NewVideoState;  
+  pageInfo: {
+    currentPage: number,
+    totalPages: number
+  }
 }
 export interface NewVideoState{  
   videoTitle: string;

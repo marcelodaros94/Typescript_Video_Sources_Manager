@@ -15,11 +15,12 @@ const uploadNewVideo = async (formData: FormData) => {
     return axios(requestOptions);
 }
 
-const getVideos = async () => {
+const getVideos = async (page: number) => {
 
+    console.log(page,'console justo a punto de request');
     const requestOptions = {
         method: 'GET',
-        url: `${process.env.REACT_APP_API_URL}/videos`,
+        url: `${process.env.REACT_APP_API_URL}/videos?page=${page}`,
         headers: {
             "Content-Type": "application/json",   
             "accept": "application/json"
