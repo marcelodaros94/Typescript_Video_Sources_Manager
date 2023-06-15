@@ -47,6 +47,7 @@ export const Dashboard: FC = (props): ReactElement => {
                 count={pageInfo.totalPages}
                 page={pageInfo.currentPage}
                 onChange={handlePageChange}
+                sx={{ position: 'fixed', left: 0, bottom: 0 }}
               />
             </Grid>
         </Layout>
