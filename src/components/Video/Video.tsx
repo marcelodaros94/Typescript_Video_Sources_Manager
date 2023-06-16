@@ -7,9 +7,9 @@ export const Video: FC<IVideo> = (props): ReactElement => {
     return (         
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
-                sx={{ height: 140 }}
+                sx={{ height: 140, backgroundPosition: '50% 0' }}
                 image={process.env.REACT_APP_IMAGES_URL+props.image}
-                title={props.title}
+                title={props.title}                
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
