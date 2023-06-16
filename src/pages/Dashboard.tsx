@@ -1,7 +1,8 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { Box, Grid, Input, Pagination }  from '@mui/material';
+import { Grid, Pagination }  from '@mui/material';
 import { VideoPlayer } from '../components/VideoPlayer/VideoPlayer'
 import { Sidebar } from '../components/Sidebar/Sidebar'
+import { SearchFilter } from '../components/SearchFilter/SearchFilter';
 import Layout from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { setVideoList, selectPageInfo, setPage, setTotalPages, setSearchTerm } from '../redux/reducers';
@@ -33,14 +34,10 @@ export const Dashboard: FC = (props): ReactElement => {
       dispatch(setPage(page));//cambia la variable de redux
     };
 
-    const handleSearch = (event: any) => {
-      dispatch(setSearchTerm(event.target.value));
-    };
-
     return (    
         <Layout>       
-            <Grid container>       
-              <Input value={searchTerm} onChange={handleSearch} placeholder="Buscar videos" sx={{ width: '100%' }} />              
+            <Grid container>    
+              <SearchFilter />
               <VideoPlayer />
               <Sidebar videos={videoList} />
               <Pagination
