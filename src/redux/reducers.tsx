@@ -16,6 +16,7 @@ const initialState: VideosState = {
     currentPage: 1,
     totalPages: 1,
   },
+  searchTerm: '',
 };
 
 const videosSlice = createSlice({
@@ -76,6 +77,10 @@ const videosSlice = createSlice({
     setTotalPages: (state, action: PayloadAction<number>) => {
       state.pageInfo.totalPages = action.payload;
     },
+    //search
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    }
   },
 });
 
@@ -93,7 +98,8 @@ export const {
   setVideoBrand,
   resetForm,
   setPage,
-  setTotalPages
+  setTotalPages,
+  setSearchTerm
 } = videosSlice.actions;
 
 export const selectPageInfo = (state: VideosState) => state.pageInfo;

@@ -4,7 +4,7 @@ import { VideoPlayer } from '../components/VideoPlayer/VideoPlayer'
 import { Sidebar } from '../components/Sidebar/Sidebar'
 import Layout from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { setVideoList, selectPageInfo, setPage, setTotalPages } from '../redux/reducers';
+import { setVideoList, selectPageInfo, setPage, setTotalPages, setSearchTerm } from '../redux/reducers';
 import { VideosState, Video } from '../redux/types';
 import videoService from '../services/video';
 
@@ -13,7 +13,7 @@ export const Dashboard: FC = (props): ReactElement => {
     const dispatch = useDispatch();
     const videoList = useSelector((state: VideosState) => state.list);
     const pageInfo = useSelector(selectPageInfo);
-    const [searchTerm, setSearchTerm] = useState('');
+    const searchTerm = useSelector((state: VideosState) => state.searchTerm);
 
     const fetchVideoList = async (page: number, term: string) => {
       try {
@@ -34,7 +34,7 @@ export const Dashboard: FC = (props): ReactElement => {
     };
 
     const handleSearch = (event: any) => {
-      setSearchTerm(event.target.value);
+      dispatch(setSearchTerm(event.target.value));
     };
 
     return (    

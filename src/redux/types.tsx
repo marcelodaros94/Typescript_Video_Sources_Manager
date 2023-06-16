@@ -19,7 +19,8 @@ export interface VideosState {
   pageInfo: {
     currentPage: number,
     totalPages: number
-  }
+  },
+  searchTerm: string,
 }
 export interface NewVideoState{  
   videoTitle: string;
