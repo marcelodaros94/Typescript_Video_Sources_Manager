@@ -29,7 +29,7 @@ export default function MainNavigation() {
           <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>Home</Link>
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
-          <Link to='/videos/new' style={{ textDecoration: 'none', color: 'inherit' }}>Add</Link>
+          <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>Add</Link>
         </Typography>
         <Tooltip title="Account settings">
           <IconButton
