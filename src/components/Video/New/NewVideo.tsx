@@ -10,6 +10,7 @@ import ImageUploadField from './_ImageUploadField';
 import { VideoDescriptionField } from './_VideoDescriptionField';
 import { VideoRatingField } from './_VideoRatingField';
 import videoService from '../../../services/video';
+import VideoBrandField from './_VideoBrandField';
 
 export const NewVideo: FC = (): ReactElement => {
     
@@ -18,6 +19,7 @@ export const NewVideo: FC = (): ReactElement => {
     const videoRating = useSelector((state: VideosState) => state.uploadNewVideo.videoRating);
     const videoUrls = useSelector((state: VideosState) => state.uploadNewVideo.videoUrls);
     const uploadedImage = useSelector((state: VideosState) => state.uploadNewVideo.uploadedImage);
+    const videoBrand = useSelector((state: VideosState) => state.uploadNewVideo.videoBrand);
     const dispatch = useDispatch();
 
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -50,6 +52,7 @@ export const NewVideo: FC = (): ReactElement => {
         formData.append('type', 'M');
         formData.append('links', JSON.stringify(videoUrls.map((url) => ({ url }))));
         formData.append('image', uploadedImage);
+        formData.append('brand', String (videoBrand));
 
         // Enviar la solicitud al endpoint de la API utilizando Axios
         videoService.uploadNewVideo(formData)
@@ -93,6 +96,9 @@ export const NewVideo: FC = (): ReactElement => {
 
                         {/* Componente ImageUploadField */}
                         <ImageUploadField />
+
+                        {/* Componente VideoBrandField */}
+                        <VideoBrandField />
 
                         {/* Botones para enviar y resetear el formulario */}
                         <Button type="submit" variant="contained" color="primary">

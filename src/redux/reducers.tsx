@@ -9,7 +9,8 @@ const initialState: VideosState = {
     videoDescription: '',
     videoRating: 3.75,
     videoUrls: [''],
-    uploadedImage: null
+    uploadedImage: null,
+    videoBrand: ''
   },
   pageInfo: {
     currentPage: 1,
@@ -55,13 +56,17 @@ const videosSlice = createSlice({
     setUploadedImage: (state, action: PayloadAction<File | null>) => {
       state.uploadNewVideo.uploadedImage = action.payload;
     },
+    setVideoBrand: (state, action: PayloadAction<string>) => {
+      state.uploadNewVideo.videoBrand = action.payload;
+    },
     resetForm: (state) => {
       state.uploadNewVideo = {
         videoTitle: '',
         videoDescription: '',
         videoRating: 3.75,
         videoUrls: [''],
-        uploadedImage: null
+        uploadedImage: null,
+        videoBrand: '',
       }
     },
     //pagination    
@@ -85,6 +90,7 @@ export const {
   removeVideoUrl,
   setVideoUrl,
   setUploadedImage,
+  setVideoBrand,
   resetForm,
   setPage,
   setTotalPages

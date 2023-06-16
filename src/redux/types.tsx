@@ -5,6 +5,7 @@ export interface Video {
     rating?: number;
     image: string;
     links?: Link[];
+    brand: string;
 }
 export interface Link {
     id: number;
@@ -26,4 +27,5 @@ export interface NewVideoState{
   videoRating: number;
   videoUrls: string[];
   uploadedImage: File | null;
+  videoBrand: string;
 }
