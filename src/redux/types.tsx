@@ -6,6 +6,7 @@ export interface Video {
     image: string;
     links?: Link[];
     brand: string;
+    index: number;
 }
 export interface Link {
     id: number;
