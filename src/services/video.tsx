@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from "./api"
 
 const uploadNewVideo = async (formData: FormData) => {
 
@@ -12,7 +13,7 @@ const uploadNewVideo = async (formData: FormData) => {
         data: formData
     };
 
-    return axios(requestOptions);
+    return api(requestOptions);
 }
 
 const getVideos = async (page: number, term: string) => {
@@ -27,7 +28,7 @@ const getVideos = async (page: number, term: string) => {
         }
     };
 
-    return axios(requestOptions)
+    return api(requestOptions)
 }
 
 const videoService = {

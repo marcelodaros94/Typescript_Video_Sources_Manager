@@ -17,6 +17,7 @@ const initialState: VideosState = {
     totalPages: 1,
   },
   searchTerm: '',
+  isLoading: false
 };
 
 const videosSlice = createSlice({
@@ -80,7 +81,14 @@ const videosSlice = createSlice({
     //search
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
-    }
+    },
+    //loading
+    startLoading: (state) => {
+      state.isLoading = true;
+    },
+    stopLoading: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 
@@ -99,7 +107,9 @@ export const {
   resetForm,
   setPage,
   setTotalPages,
-  setSearchTerm
+  setSearchTerm,
+  startLoading, 
+  stopLoading
 } = videosSlice.actions;
 
 export const selectPageInfo = (state: VideosState) => state.pageInfo;
