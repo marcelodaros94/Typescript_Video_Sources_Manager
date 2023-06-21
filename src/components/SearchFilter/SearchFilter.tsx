@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchTerm } from '../../redux/reducers';
+import { setPage, setSearchTerm } from '../../redux/reducers';
 import { Grid, Input, Button }  from '@mui/material';
 import { VideosState } from '../../redux/types';
 
@@ -11,6 +11,7 @@ export const SearchFilter: FC = (): ReactElement => {
 
     const handleSearch = (event: any) => {
         dispatch(setSearchTerm(event.target.value));
+        dispatch(setPage(1));
     };
     
     const handleClick = (event: any) => {
