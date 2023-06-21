@@ -22,6 +22,7 @@ export interface VideosState {
     totalPages: number
   },
   searchTerm: string,
+  searchRating: number,
   isLoading: boolean
 }
 export interface NewVideoState{  

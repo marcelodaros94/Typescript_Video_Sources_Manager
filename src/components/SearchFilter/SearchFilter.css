@@ -1,0 +1,8 @@
+button{
+    min-width:auto !important;
+}
+.specialFilter input{
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    text-align:center;
+}

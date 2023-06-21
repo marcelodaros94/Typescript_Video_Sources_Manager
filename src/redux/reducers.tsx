@@ -17,6 +17,7 @@ const initialState: VideosState = {
     totalPages: 1,
   },
   searchTerm: '',
+  searchRating: 0,
   isLoading: false
 };
 
@@ -89,6 +90,19 @@ const videosSlice = createSlice({
     stopLoading: (state) => {
       state.isLoading = false;
     },
+    //rating    
+    incrementRating: (state) => {
+      state.searchRating = Math.min(state.searchRating + 1, 6);
+    },
+    decrementRating: (state) => {
+      state.searchRating = Math.max(state.searchRating - 1, 1);
+    },
+    setRating: (state, action: PayloadAction<number>) => {
+      const newValue = action.payload;
+      if (!isNaN(newValue) && newValue >= 1 && newValue <= 6) {
+        state.searchRating = newValue;
+      }
+    },
   },
 });
 
@@ -109,7 +123,10 @@ export const {
   setTotalPages,
   setSearchTerm,
   startLoading, 
-  stopLoading
+  stopLoading,
+  setRating,
+  decrementRating,
+  incrementRating
 } = videosSlice.actions;
 
 export const selectPageInfo = (state: VideosState) => state.pageInfo;

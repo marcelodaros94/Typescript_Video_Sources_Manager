@@ -5,7 +5,7 @@ import { Sidebar } from '../components/Sidebar/Sidebar'
 import { SearchFilter } from '../components/SearchFilter/SearchFilter';
 import Layout from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { setVideoList, selectPageInfo, setPage, setTotalPages, setSearchTerm } from '../redux/reducers';
+import { setVideoList, selectPageInfo, setPage, setTotalPages } from '../redux/reducers';
 import { VideosState, Video } from '../redux/types';
 import videoService from '../services/video';
 
@@ -15,10 +15,11 @@ export const Dashboard: FC = (props): ReactElement => {
     const videoList = useSelector((state: VideosState) => state.list);
     const pageInfo = useSelector(selectPageInfo);
     const searchTerm = useSelector((state: VideosState) => state.searchTerm);
+    const searchRating = useSelector((state: VideosState) => state.searchRating);
 
-    const fetchVideoList = async (page: number, term: string) => {
+    const fetchVideoList = async (page: number, term: string, rating: number) => {
       try {
-        const response = await videoService.getVideos(page, term);
+        const response = await videoService.getVideos(page, term, rating);
         dispatch(setVideoList(response.data.videos));
         dispatch(setTotalPages(response.data.totalPages));
       } catch (error) {
@@ -27,8 +28,8 @@ export const Dashboard: FC = (props): ReactElement => {
     };    
 
     useEffect(() => {        
-        fetchVideoList(pageInfo.currentPage, searchTerm);
-    }, [pageInfo.currentPage, searchTerm]);//se llama cada vez que cambie la variable de redux
+        fetchVideoList(pageInfo.currentPage, searchTerm, searchRating);
+    }, [pageInfo.currentPage, searchTerm, searchRating]);//se llama cada vez que cambie la variable de redux
   
     const handlePageChange = (event: any, page: number) => {
       dispatch(setPage(page));//cambia la variable de redux
