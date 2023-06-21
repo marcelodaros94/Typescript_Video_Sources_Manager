@@ -17,11 +17,12 @@ export const SearchFilter: FC = (): ReactElement => {
     }
 
     const handleSearchByTerm = (event: any) => {
-        dispatch(setSearchTerm(event.target.value));
         resetResultConfig();
+        dispatch(setSearchTerm(event.target.value));
     };
     
     const handleClick = (event: any) => {
+        resetResultConfig();
         dispatch(setSearchTerm(event.target.innerText));
     };
 
