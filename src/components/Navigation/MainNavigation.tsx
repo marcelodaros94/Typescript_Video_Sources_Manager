@@ -23,7 +23,7 @@ export default function MainNavigation() {
     setAnchorEl(null);
   };
   return (
-    <Grid style={{ margin: '20px 0' }}>
+    <Grid style={{ margin: '20px 0' }}>{/*
       <Box sx={{ display: 'inline-flex', alignItems: 'center', textAlign: 'left' }}>
         <Typography sx={{ minWidth: 100 }}>
           <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>Home</Link>
@@ -88,7 +88,7 @@ export default function MainNavigation() {
           </ListItemIcon>
           Logout
         </MenuItem>
-      </Menu>
+      </Menu>*/}
     </Grid>
   );
 }
