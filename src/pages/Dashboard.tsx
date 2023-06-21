@@ -5,7 +5,7 @@ import { Sidebar } from '../components/Sidebar/Sidebar'
 import { SearchFilter } from '../components/SearchFilter/SearchFilter';
 import Layout from '../components/Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { setVideoList, selectPageInfo, setPage, setTotalPages } from '../redux/reducers';
+import { setVideoList, selectPageInfo, setPage, setTotalPages, setCurrentVideoIndex } from '../redux/reducers';
 import { VideosState, Video } from '../redux/types';
 import videoService from '../services/video';
 
@@ -33,6 +33,7 @@ export const Dashboard: FC = (props): ReactElement => {
   
     const handlePageChange = (event: any, page: number) => {
       dispatch(setPage(page));//cambia la variable de redux
+      dispatch(setCurrentVideoIndex(0));//cambia la variable de redux
     };
 
     return (    
