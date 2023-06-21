@@ -22,6 +22,7 @@ export const Dashboard: FC = (props): ReactElement => {
         const response = await videoService.getVideos(page, term, rating);
         dispatch(setVideoList(response.data.videos));
         dispatch(setTotalPages(response.data.totalPages));
+        dispatch(setCurrentVideoIndex(0));
       } catch (error) {
         console.error('Error fetching video list:', error);
       }
