@@ -17,7 +17,7 @@ const initialState: VideosState = {
     totalPages: 1,
   },
   searchTerm: '',
-  searchRating: 0,
+  searchRating: 3,
   isLoading: false
 };
 
