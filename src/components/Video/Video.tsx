@@ -14,7 +14,6 @@ export const Video: FC<IVideo> = (props): ReactElement => {
     return (         
         <Card onClick={() => handleClick(props.index)}
         sx={{
-          maxWidth: 345,
           '&:hover': {
             '& .MuiCardContent-root': {
               backgroundColor: '#21b6ae', // Cambia el color de fondo del CardContent en hover

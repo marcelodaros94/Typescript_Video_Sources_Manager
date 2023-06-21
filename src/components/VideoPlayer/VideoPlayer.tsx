@@ -3,6 +3,7 @@ import { Grid }  from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPlayer from 'react-player';
 import { goToNextVideo } from '../../redux/reducers';
+import './VideoPlayer.css'
 
 export const VideoPlayer: FC = (props): ReactElement => {
     const dispatch = useDispatch();
