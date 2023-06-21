@@ -17,13 +17,15 @@ export const SearchFilter: FC = (): ReactElement => {
     }
 
     const handleSearchByTerm = (event: any) => {
-        resetResultConfig();
+        dispatch(setPage(1));
         dispatch(setSearchTerm(event.target.value));
+        dispatch(setCurrentVideoIndex(0));
     };
     
     const handleClick = (event: any) => {
-        resetResultConfig();
+        dispatch(setPage(1));
         dispatch(setSearchTerm(event.target.innerText));
+        dispatch(setCurrentVideoIndex(0));
     };
 
     const handleDecrease = (): void => {
