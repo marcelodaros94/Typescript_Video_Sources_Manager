@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPage, setSearchTerm, setRating, incrementRating, decrementRating } from '../../redux/reducers';
+import { setPage, setSearchTerm, setRating, incrementRating, decrementRating, setCurrentVideoIndex } from '../../redux/reducers';
 import { Grid, Input, Button, TextField, Box }  from '@mui/material';
 import { VideosState } from '../../redux/types';
 import './SearchFilter.css'
@@ -11,9 +11,14 @@ export const SearchFilter: FC = (): ReactElement => {
     const searchTerm = useSelector((state: VideosState) => state.searchTerm);
     const searchRating = useSelector((state: VideosState) => state.searchRating);
 
-    const handleSearch = (event: any) => {
-        dispatch(setSearchTerm(event.target.value));
+    const resetResultConfig = () => {
         dispatch(setPage(1));
+        dispatch(setCurrentVideoIndex(0));
+    }
+
+    const handleSearchByTerm = (event: any) => {
+        dispatch(setSearchTerm(event.target.value));
+        resetResultConfig();
     };
     
     const handleClick = (event: any) => {
@@ -37,7 +42,7 @@ export const SearchFilter: FC = (): ReactElement => {
 
     return (        
         <Grid item xs={12} sm={12} md={12} direction={'column'} spacing={2} wrap="nowrap">
-            <Input value={searchTerm} onChange={handleSearch} placeholder="Buscar videos" sx={{ width: '100%', mb: '15px' }} />
+            <Input value={searchTerm} onChange={handleSearchByTerm} placeholder="Buscar videos" sx={{ width: '100%', mb: '15px' }} />
             <Box className="specialFilter" display="flex" justifyContent="left" gap="10px" alignItems="center">
                 <Button onClick={handleClick} style={{backgroundColor: "#21b6ae"}} variant="contained">
                     AEW
