@@ -8,7 +8,14 @@ export const Video: FC<IVideo> = (props): ReactElement => {
     const dispatch = useDispatch();
     
     const handleClick = (index: number) => {
+        ScrollToTopButton();
         dispatch(setCurrentVideoIndex(index));
+    };
+    const ScrollToTopButton = () => {
+        window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+        });
     };
 
     return (         
