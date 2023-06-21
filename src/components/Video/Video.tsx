@@ -34,10 +34,6 @@ export const Video: FC<IVideo> = (props): ReactElement => {
                 {props.description}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Add</Button>
-                <Button size="small">Watch</Button>
-            </CardActions>
         </Card>    
     )
 }
