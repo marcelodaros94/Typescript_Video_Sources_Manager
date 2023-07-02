@@ -23,8 +23,10 @@ export const Dashboard: FC = (props): ReactElement => {
         dispatch(setVideoList(response.data.videos));
         dispatch(setTotalPages(response.data.totalPages));
         dispatch(setCurrentVideoIndex(0));
-      } catch (error) {
-        console.error('Error fetching video list:', error);
+      } catch (error: any) {
+        if (error.response && error.response.status === 503) {
+          alert('Servidor en modo reposo. Intente más tarde.');
+        }
       }
     };    
 
