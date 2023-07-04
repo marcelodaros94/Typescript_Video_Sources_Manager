@@ -3,6 +3,7 @@ import { Card, CardMedia, CardActions, Button, CardContent, Typography }  from '
 import { Video as IVideo } from '../../redux/types';
 import { useDispatch } from 'react-redux';
 import { setCurrentVideoIndex } from '../../redux/reducers';
+import '../Sidebar/Sidebar.css';
 
 export const Video: FC<IVideo> = (props): ReactElement => {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const Video: FC<IVideo> = (props): ReactElement => {
     };
 
     return (         
-        <Card onClick={() => handleClick(props.index)}
+        <Card className='mt_mobile' onClick={() => handleClick(props.index)}
         sx={{
           '&:hover': {
             '& .MuiCardContent-root': {
