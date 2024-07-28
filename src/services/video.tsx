@@ -1,38 +1,37 @@
 import axios from "axios";
 import api from "./api"
+import { IVideoService } from '../interfaces/videoServiceInterface';
 
-const uploadNewVideo = async (formData: FormData) => {
+class VideoService implements IVideoService {
 
-    const requestOptions = {
-        method: 'POST',
-        url: `${process.env.REACT_APP_API_URL}/video`,
-        headers: {
-            "Content-Type": "multipart/form-data",   
-            //"Authorization": "Bearer "+localStorage.getItem("auth_token")
-        },
-        data: formData
-    };
+    async uploadNewVideo(formData: FormData): Promise<{ files: File[] }>{
 
-    return api(requestOptions);
+        const requestOptions = {
+            method: 'POST',
+            url: `${process.env.REACT_APP_API_URL}/video`,
+            headers: {
+                "Content-Type": "multipart/form-data",   
+                //"Authorization": "Bearer "+localStorage.getItem("auth_token")
+            },
+            data: formData
+        };
+
+        return api(requestOptions);
+    }
+
+    async getVideos(page: number, term: string, rating: number){
+        
+        const requestOptions = {
+            method: 'GET',
+            url: `${process.env.REACT_APP_API_URL}/videos?page=${page}&search=${term}&rating=${rating}`,
+            headers: {
+                "Content-Type": "application/json",   
+                "accept": "application/json"
+            }
+        };
+
+        return api(requestOptions)
+    }
 }
 
-const getVideos = async (page: number, term: string, rating: number) => {
-
-    console.log(page,'console justo a punto de request');
-    const requestOptions = {
-        method: 'GET',
-        url: `${process.env.REACT_APP_API_URL}/videos?page=${page}&search=${term}&rating=${rating}`,
-        headers: {
-            "Content-Type": "application/json",   
-            "accept": "application/json"
-        }
-    };
-
-    return api(requestOptions)
-}
-
-const videoService = {
-    uploadNewVideo, getVideos
-}
-
-export default videoService
+export default new VideoService();
