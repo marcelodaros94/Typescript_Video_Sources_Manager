@@ -4,7 +4,7 @@ export interface Video {
     description: string;
     rating?: number;
     image: string;
-    links?: Link[];
+    links?: Link;
     brand: string;
     index: number;
 }

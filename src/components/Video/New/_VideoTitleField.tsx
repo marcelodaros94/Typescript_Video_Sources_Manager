@@ -13,7 +13,12 @@ export const VideoTitleField: FC = (): ReactElement => {
     };
   
     return(
-        <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleTitleChange} />
+        <TextField 
+        id="video-title"
+        label="Title"
+        fullWidth
+        onChange={handleTitleChange}
+        />
     );
 
 }

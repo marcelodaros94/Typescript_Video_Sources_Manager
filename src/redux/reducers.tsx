@@ -52,9 +52,8 @@ const videosSlice = createSlice({
     removeVideoUrl: (state, action: PayloadAction<number>) => {
       state.uploadNewVideo.videoUrls.splice(action.payload, 1);
     },
-    setVideoUrl: (state, action: PayloadAction<{ index: number; url: string }>) => {
-      const { index, url } = action.payload;
-      state.uploadNewVideo.videoUrls[index] = url;
+    setVideoUrl: (state, action: PayloadAction<string>) => {
+      state.uploadNewVideo.videoUrls[0] = action.payload;
     },
     setUploadedImage: (state, action: PayloadAction<File | null>) => {
       state.uploadNewVideo.uploadedImage = action.payload;

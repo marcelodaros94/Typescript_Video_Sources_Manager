@@ -13,7 +13,9 @@ export const VideoDescriptionField: FC = (): ReactElement => {
     };
 
     return(
-        <TextField id="outlined-basic" label="Description" variant="outlined" onChange={handleDescriptionChange} />
+        <TextField 
+        fullWidth
+        id="outlined-basic" label="Description" variant="outlined" onChange={handleDescriptionChange} />
     );
 
 }

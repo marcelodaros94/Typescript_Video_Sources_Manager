@@ -14,6 +14,7 @@ export const VideoRatingField: FC = (): ReactElement => {
 
     return(
         <TextField id="outlined-basic" label="Rating" variant="outlined" onChange={handleRatingChange} 
+        fullWidth
         inputProps={{
           inputMode: 'decimal', // Indica al teclado del dispositivo que se acepten números y decimales
           pattern: '^\\d*\\.?\\d*$' // Patrón para asegurar que solo se ingresen números y decimales
