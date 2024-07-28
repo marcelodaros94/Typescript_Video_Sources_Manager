@@ -4,7 +4,7 @@ import { IVideoService } from '../interfaces/videoServiceInterface';
 
 class VideoService implements IVideoService {
 
-    async uploadNewVideo(formData: FormData){
+    async uploadNewVideo(formData: FormData): Promise<{ files: File[] }>{
 
         const requestOptions = {
             method: 'POST',
