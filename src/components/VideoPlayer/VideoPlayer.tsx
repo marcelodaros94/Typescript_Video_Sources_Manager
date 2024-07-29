@@ -27,7 +27,7 @@ export const VideoPlayer: FC = (props): ReactElement => {
     return (
         <Grid item xs={12} sm={12} md={8} direction={'column'} spacing={2}> 
             <h2>{videos[currentVideoIndex]?.title} | {videos[currentVideoIndex]?.rating} stars</h2>
-            {videos.length > 0 && videos[currentVideoIndex]?.links && (
+            {(videos.length > 0 && videos[currentVideoIndex]?.links && !videos[currentVideoIndex].links[0].url.includes('dailymotion')) ? (
             <ReactPlayer
                 ref={videoRef}
                 url={videos[currentVideoIndex].links[0].url}
@@ -41,7 +41,7 @@ export const VideoPlayer: FC = (props): ReactElement => {
                   },
                 }}
             />
-            )}
+            ) : <p>This video has been disabled temporarily</p>}
         </Grid>
     );
 };
